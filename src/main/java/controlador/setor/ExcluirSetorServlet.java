@@ -30,16 +30,17 @@ public class ExcluirSetorServlet extends HttpServlet {
 		try {
 			setorId = Long.parseLong(request.getParameter("id").trim());
 
-			SetorRepositorio repositorio = new SetorRepositorio();
+			final SetorRepositorio repositorio = new SetorRepositorio();
 
 			setor = repositorio.recuperarPorId(setorId);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
-		if (setor == null)
+		if (setor == null) {
 			setor = new Setor();
+		}
 
 		request.setAttribute("setor", setor);
 
@@ -47,7 +48,7 @@ public class ExcluirSetorServlet extends HttpServlet {
 
 		request.setAttribute("pathView", "/WEB-INF/views/setor/excluir.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
@@ -59,30 +60,30 @@ public class ExcluirSetorServlet extends HttpServlet {
 
 		try {
 			patrimonioId = Long.parseLong(request.getParameter("id").trim());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
 		if (patrimonioId > 0) {
-			SetorRepositorio repositorio = new SetorRepositorio();
+			final SetorRepositorio repositorio = new SetorRepositorio();
 
-			Setor setor = repositorio.recuperarPorId(patrimonioId);
-			CentroCusto centroCusto = repositorio.recuperarCentroCustoById(patrimonioId);
-			
-			if(centroCusto != null) {
-				var ccRepo = new CentroCustoRepositorio();
-				
+			final Setor setor = repositorio.recuperarPorId(patrimonioId);
+			final CentroCusto centroCusto = repositorio.recuperarCentroCustoById(patrimonioId);
+
+			if (centroCusto != null) {
+				final var ccRepo = new CentroCustoRepositorio();
+
 				centroCusto.getSetores().remove(setor);
 				ccRepo.atualizar(centroCusto);
 			}
-			
+
 			repositorio.excluir(setor);
 
 			PersistenceConfig.closeEntityManager();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/setor");
+		final RequestDispatcher rd = request.getRequestDispatcher("/setor");
 
 		rd.forward(request, response);
 	}

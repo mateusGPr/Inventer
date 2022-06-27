@@ -16,8 +16,8 @@ Setor setor = (Setor) request.getAttribute("setor");
 %>
 
 <nav>
-	<a href="${pageContext.request.contextPath}/patrimonio">
-		Listar Patrimônios</a>
+	<a href="${pageContext.request.contextPath}/patrimonio"> Listar
+		Patrimônios</a>
 </nav>
 
 <p>

@@ -26,56 +26,56 @@ public abstract class Endereco {
 	@Column(nullable = false)
 	protected String uf;
 
+	public String getBairro() {
+		return bairro;
+	}
+
 	public long getCep() {
 		return cep;
-	}
-
-	public void setCep(long cep) {
-		this.cep = cep;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
-
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
 	}
 
 	public String getComplemento() {
 		return complemento;
 	}
 
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
+	public String getLocalidade() {
+		return localidade;
 	}
 
-	public String getBairro() {
-		return bairro;
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public String getUf() {
+		return uf;
 	}
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
 
-	public String getLocalidade() {
-		return localidade;
+	public void setCep(long cep) {
+		this.cep = cep;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public void setLocalidade(String localidade) {
 		this.localidade = localidade;
 	}
 
-	public String getUf() {
-		return uf;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 
 	public void setUf(String uf) {

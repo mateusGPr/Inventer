@@ -19,34 +19,30 @@ public class ListarPatrimonioServlet extends HttpServlet {
 
 	public ListarPatrimonioServlet() {
 	}
-	
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
-		PatrimonioRepositorio repositorio = new PatrimonioRepositorio();
-		
-		Collection<Patrimonio> patrimonios =
-				repositorio.recuperar();
-		
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		final PatrimonioRepositorio repositorio = new PatrimonioRepositorio();
+
+		final Collection<Patrimonio> patrimonios = repositorio.recuperar();
+
 		PersistenceConfig.closeEntityManager();
-		
+
 		request.setAttribute("patrimonios", patrimonios);
-		
-		request.setAttribute("tituloPagina",
-				"Patrimônios");
-		
-		request.setAttribute("pathView",
-				"/WEB-INF/views/patrimonio/listar.jsp");
-		
-		RequestDispatcher rd =
-				request.getRequestDispatcher("/WEB-INF/template.jsp");
-		
+
+		request.setAttribute("tituloPagina", "Patrimônios");
+
+		request.setAttribute("pathView", "/WEB-INF/views/patrimonio/listar.jsp");
+
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
+
 		rd.forward(request, response);
 	}
-	
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

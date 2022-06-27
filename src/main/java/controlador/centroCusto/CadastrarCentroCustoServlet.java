@@ -29,7 +29,7 @@ public class CadastrarCentroCustoServlet extends HttpServlet {
 
 		request.setAttribute("pathView", "/WEB-INF/views/centrocusto/cadastrar.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
@@ -38,32 +38,28 @@ public class CadastrarCentroCustoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try
-		{
+		try {
 
-			CentroCusto centrocusto = new CentroCusto();
+			final CentroCusto centrocusto = new CentroCusto();
 
+			final CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
 
-			CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
-
-			Assign.Value((str) -> centrocusto.setNome(str), request, "nome");
-			Assign.Value((str) -> centrocusto.setUndAdministrativa(str), request, "undadm");
+			Assign.Value(str -> centrocusto.setNome(str), request, "nome");
+			Assign.Value(str -> centrocusto.setUndAdministrativa(str), request, "undadm");
 
 			/* Class Endereco */
-			Assign.Value((str) -> centrocusto.setCep(Long.parseLong(str)), request, "cep");
-			Assign.Value((str) -> centrocusto.setNumero(Integer.parseInt(str)), request, "numero");
-			Assign.Value((str) -> centrocusto.setLogradouro(str), request, "logradouro");
-			Assign.Value((str) -> centrocusto.setComplemento(str), request, "complemento");
-			Assign.Value((str) -> centrocusto.setBairro(str), request, "bairro");
-			Assign.Value((str) -> centrocusto.setLocalidade(str), request, "localidade");
-			Assign.Value((str) -> centrocusto.setUf(str), request, "uf");
+			Assign.Value(str -> centrocusto.setCep(Long.parseLong(str)), request, "cep");
+			Assign.Value(str -> centrocusto.setNumero(Integer.parseInt(str)), request, "numero");
+			Assign.Value(str -> centrocusto.setLogradouro(str), request, "logradouro");
+			Assign.Value(str -> centrocusto.setComplemento(str), request, "complemento");
+			Assign.Value(str -> centrocusto.setBairro(str), request, "bairro");
+			Assign.Value(str -> centrocusto.setLocalidade(str), request, "localidade");
+			Assign.Value(str -> centrocusto.setUf(str), request, "uf");
 
 			repositorio.criar(centrocusto);
 
 			PersistenceConfig.closeEntityManager();
-		}
-		catch (Exception e)
-		{
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}

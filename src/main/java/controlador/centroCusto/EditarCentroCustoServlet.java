@@ -29,17 +29,18 @@ public class EditarCentroCustoServlet extends HttpServlet {
 		try {
 			centrocustoId = Long.parseLong(request.getParameter("id").trim());
 
-			CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
+			final CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
 
 			centrocusto = repositorio.recuperarPorId(centrocustoId);
 
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
-		if (centrocusto == null)
+		if (centrocusto == null) {
 			centrocusto = new CentroCusto();
+		}
 
 		request.setAttribute("centrocusto", centrocusto);
 
@@ -47,7 +48,7 @@ public class EditarCentroCustoServlet extends HttpServlet {
 
 		request.setAttribute("pathView", "/WEB-INF/views/centrocusto/editar.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
@@ -59,34 +60,34 @@ public class EditarCentroCustoServlet extends HttpServlet {
 
 		try {
 			id = Long.parseLong(request.getParameter("id").trim());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
 		if (id > 0) {
-			CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
+			final CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
 
-			CentroCusto centrocusto = repositorio.recuperarPorId(id);
+			final CentroCusto centrocusto = repositorio.recuperarPorId(id);
 
-			Assign.Value((str) -> centrocusto.setNome(str), request, "nome");
-			Assign.Value((str) -> centrocusto.setUndAdministrativa(str), request, "undadm");
+			Assign.Value(str -> centrocusto.setNome(str), request, "nome");
+			Assign.Value(str -> centrocusto.setUndAdministrativa(str), request, "undadm");
 
 			/* Class Endereco */
-			Assign.Value((str) -> centrocusto.setCep(Long.parseLong(str)), request, "cep");
-			Assign.Value((str) -> centrocusto.setNumero(Integer.parseInt(str)), request, "numero");
-			Assign.Value((str) -> centrocusto.setLogradouro(str), request, "logradouro");
-			Assign.Value((str) -> centrocusto.setComplemento(str), request, "complemento");
-			Assign.Value((str) -> centrocusto.setBairro(str), request, "bairro");
-			Assign.Value((str) -> centrocusto.setLocalidade(str), request, "localidade");
-			Assign.Value((str) -> centrocusto.setUf(str), request, "uf");
+			Assign.Value(str -> centrocusto.setCep(Long.parseLong(str)), request, "cep");
+			Assign.Value(str -> centrocusto.setNumero(Integer.parseInt(str)), request, "numero");
+			Assign.Value(str -> centrocusto.setLogradouro(str), request, "logradouro");
+			Assign.Value(str -> centrocusto.setComplemento(str), request, "complemento");
+			Assign.Value(str -> centrocusto.setBairro(str), request, "bairro");
+			Assign.Value(str -> centrocusto.setLocalidade(str), request, "localidade");
+			Assign.Value(str -> centrocusto.setUf(str), request, "uf");
 
 			repositorio.atualizar(centrocusto);
 
 			PersistenceConfig.closeEntityManager();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/centrocusto");
+		final RequestDispatcher rd = request.getRequestDispatcher("/centrocusto");
 
 		rd.forward(request, response);
 	}

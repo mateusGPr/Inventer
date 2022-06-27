@@ -31,31 +31,31 @@ public class CentroCusto extends Endereco {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getNome() {
 		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getUndAdministrativa() {
-		return undAdministrativa;
-	}
-
-	public void setUndAdministrativa(String undAdministrativa) {
-		this.undAdministrativa = undAdministrativa;
 	}
 
 	public Collection<Setor> getSetores() {
 		return setores;
 	}
 
+	public String getUndAdministrativa() {
+		return undAdministrativa;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public void setSetores(Collection<Setor> setores) {
 		this.setores = setores;
+	}
+
+	public void setUndAdministrativa(String undAdministrativa) {
+		this.undAdministrativa = undAdministrativa;
 	}
 }

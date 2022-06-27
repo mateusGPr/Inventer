@@ -27,7 +27,7 @@ public class CadastrarFuncionarioServlet extends HttpServlet {
 
 		request.setAttribute("pathView", "/WEB-INF/views/funcionario/cadastrar.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
@@ -35,15 +35,14 @@ public class CadastrarFuncionarioServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Funcionario funcionario = new Funcionario();
+		final Funcionario funcionario = new Funcionario();
 
+		final FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
 
-		FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
-
-		Assign.Value((str) -> funcionario.setNome(str), request, "nome");
-		Assign.Value((str) -> funcionario.setCpf(str), request, "cpf");
-		Assign.Value((str) -> funcionario.setProntuario(Long.parseLong(str)), request, "prontuario");
-		Assign.Value((str) -> funcionario.setCargo(str), request, "cargo");
+		Assign.Value(str -> funcionario.setNome(str), request, "nome");
+		Assign.Value(str -> funcionario.setCpf(str), request, "cpf");
+		Assign.Value(str -> funcionario.setProntuario(Long.parseLong(str)), request, "prontuario");
+		Assign.Value(str -> funcionario.setCargo(str), request, "cargo");
 
 		repositorio.criar(funcionario);
 

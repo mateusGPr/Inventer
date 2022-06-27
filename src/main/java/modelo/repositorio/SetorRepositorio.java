@@ -8,7 +8,12 @@ import modelo.repositorio.config.PersistenceConfig;
 import modelo.repositorio.config.Repositorio;
 
 public class SetorRepositorio extends Repositorio<Setor, Long> {
-	private static final String CENTROCUSTO_FROM_SETOR = "SELECT ctc FROM CentroCusto ctc JOIN ctc.setores str WHERE str.id= :id";
+	private static final String CENTROCUSTO_FROM_SETOR = """
+			SELECT ctc
+			FROM CentroCusto ctc
+			JOIN ctc.setores str
+			WHERE str.id= :id
+			""";
 
 	public SetorRepositorio() {
 	}

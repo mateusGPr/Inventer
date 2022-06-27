@@ -39,7 +39,6 @@ if (request.getAttribute("setores") != null)
 			out.write("<td  scope=\"row\">" + pf.getId() + "</td>");
 			out.write("<td>" + pf.getNome() + "</td>");
 			out.write("<td>" + pf.getCodigo() + "</td>");
-			
 
 			out.write("<td>" + pf.getCep() + "</td>");
 			out.write("<td>" + pf.getNumero() + "</td>");

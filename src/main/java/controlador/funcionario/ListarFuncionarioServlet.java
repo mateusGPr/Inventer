@@ -21,34 +21,28 @@ public class ListarFuncionarioServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
-		FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		final FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
 
-		Collection<Funcionario> funcionarios =
-				repositorio.recuperar();
+		final Collection<Funcionario> funcionarios = repositorio.recuperar();
 
 		PersistenceConfig.closeEntityManager();
 
 		request.setAttribute("funcionarios", funcionarios);
 
-		request.setAttribute("tituloPagina",
-				"Funcionários");
+		request.setAttribute("tituloPagina", "Funcionários");
 
-		request.setAttribute("pathView",
-				"/WEB-INF/views/funcionario/listar.jsp");
+		request.setAttribute("pathView", "/WEB-INF/views/funcionario/listar.jsp");
 
-		RequestDispatcher rd =
-				request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

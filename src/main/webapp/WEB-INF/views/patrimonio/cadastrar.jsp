@@ -33,22 +33,22 @@ if (request.getAttribute("setores") != null)
 	</div>
 
 	<div class="form-group m-1">
-		<label for="estado">Estado:</label>
-		<select class="form-control m-1" name="estado">
-				<option value="Normal">Normal</option>
-				<option value="Inservível">Inservível</option>
-				<option value="Quebrado">Quebrado</option>
+		<label for="estado">Estado:</label> <select class="form-control m-1"
+			name="estado">
+			<option value="Normal">Normal</option>
+			<option value="Inservível">Inservível</option>
+			<option value="Quebrado">Quebrado</option>
 		</select>
 	</div>
 
 	<div class="form-group m-1">
-		<label for="situacao">Situação:</label>
-		<select class="form-control m-1" name="situacao">
-				<option value="Não Inventariado">Não Inventariado</option>
-				<option value="Não Localizado">Não Localizado</option>
-				<option value="Furto">Furto</option>
-				<option value="Roubo">Roubo</option>
-				<option value="Localizado">Localizado</option>
+		<label for="situacao">Situação:</label> <select
+			class="form-control m-1" name="situacao">
+			<option value="Não Inventariado">Não Inventariado</option>
+			<option value="Não Localizado">Não Localizado</option>
+			<option value="Furto">Furto</option>
+			<option value="Roubo">Roubo</option>
+			<option value="Localizado">Localizado</option>
 		</select>
 	</div>
 
@@ -66,8 +66,8 @@ if (request.getAttribute("setores") != null)
 		<label for="marca">Marca:</label> <input class="form-control m-1"
 			type="text" name="marca">
 	</div>
-	
-	
+
+
 	<h2>Funcionário Vínculado</h2>
 	<div class="form-group m-1">
 		<select class="form-control m-1" name="funcId">

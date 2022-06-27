@@ -21,34 +21,28 @@ public class ListarSetorServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
-		SetorRepositorio repositorio = new SetorRepositorio();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		final SetorRepositorio repositorio = new SetorRepositorio();
 
-		Collection<Setor> setores =
-				repositorio.recuperar();
+		final Collection<Setor> setores = repositorio.recuperar();
 
 		PersistenceConfig.closeEntityManager();
 
 		request.setAttribute("setores", setores);
 
-		request.setAttribute("tituloPagina",
-				"Setores");
+		request.setAttribute("tituloPagina", "Setores");
 
-		request.setAttribute("pathView",
-				"/WEB-INF/views/setor/listar.jsp");
+		request.setAttribute("pathView", "/WEB-INF/views/setor/listar.jsp");
 
-		RequestDispatcher rd =
-				request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

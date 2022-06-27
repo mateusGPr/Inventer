@@ -9,8 +9,18 @@ import modelo.repositorio.config.PersistenceConfig;
 import modelo.repositorio.config.Repositorio;
 
 public class PatrimonioRepositorio extends Repositorio<Patrimonio, Long> {
-	private static final String SETOR_FROM_PATRIMONIO = "SELECT str FROM Setor str JOIN str.patrimonios ptr WHERE ptr.id= :id";
-	private static final String FUNCIONARIO_FROM_PATRIMONIO = "SELECT func FROM Funcionario func JOIN func.patrimonios ptr WHERE ptr.id= :id";
+	private static final String SETOR_FROM_PATRIMONIO = """
+			SELECT str
+			FROM Setor str
+			JOIN str.patrimonios ptr
+			WHERE ptr.id= :id
+			""";
+	private static final String FUNCIONARIO_FROM_PATRIMONIO = """
+			SELECT func
+			FROM Funcionario func
+			JOIN func.patrimonios ptr
+			WHERE ptr.id= :id
+			""";
 
 	public PatrimonioRepositorio() {
 	}

@@ -44,12 +44,12 @@ public class InfoPatrimonioServlet extends HttpServlet {
 		if (patrimonio == null) {
 			patrimonio = new Patrimonio();
 		}
-		
-		if(funcionario == null) {
+
+		if (funcionario == null) {
 			funcionario = new Funcionario();
 		}
-		
-		if(setor == null) {
+
+		if (setor == null) {
 			setor = new Setor();
 		}
 

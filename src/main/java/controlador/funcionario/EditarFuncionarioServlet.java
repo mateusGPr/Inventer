@@ -21,77 +21,65 @@ public class EditarFuncionarioServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Long funcionarioId = 0l;
 		Funcionario funcionario = null;
 
-		try
-		{
+		try {
 			funcionarioId = Long.parseLong(request.getParameter("id").trim());
 
-			FuncionarioRepositorio repositorio =
-					new FuncionarioRepositorio();
+			final FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
 
 			funcionario = repositorio.recuperarPorId(funcionarioId);
-		}
-		catch (Exception e)
-		{
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
-		if(funcionario == null)
+		if (funcionario == null) {
 			funcionario = new Funcionario();
+		}
 
 		request.setAttribute("funcionario", funcionario);
 
-		request.setAttribute("tituloPagina",
-				"Editar Funcionário");
+		request.setAttribute("tituloPagina", "Editar Funcionário");
 
-		request.setAttribute("pathView",
-				"/WEB-INF/views/funcionario/editar.jsp");
+		request.setAttribute("pathView", "/WEB-INF/views/funcionario/editar.jsp");
 
-		RequestDispatcher rd =
-				request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Long id = 0l;
 
-		try
-		{
+		try {
 			id = Long.parseLong(request.getParameter("id").trim());
-		}
-		catch (Exception e)
-		{
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
-		if(id > 0)
-		{
-			FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
+		if (id > 0) {
+			final FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
 
-			Funcionario funcionario = repositorio.recuperarPorId(id);
+			final Funcionario funcionario = repositorio.recuperarPorId(id);
 
-			Assign.Value((str) -> funcionario.setNome(str), request, "nome");
-			Assign.Value((str) -> funcionario.setCpf(str), request, "cpf");
-			Assign.Value((str) -> funcionario.setProntuario(Long.parseLong(str)), request, "prontuario");
-			Assign.Value((str) -> funcionario.setCargo(str), request, "cargo");
+			Assign.Value(str -> funcionario.setNome(str), request, "nome");
+			Assign.Value(str -> funcionario.setCpf(str), request, "cpf");
+			Assign.Value(str -> funcionario.setProntuario(Long.parseLong(str)), request, "prontuario");
+			Assign.Value(str -> funcionario.setCargo(str), request, "cargo");
 
 			repositorio.atualizar(funcionario);
 
 			PersistenceConfig.closeEntityManager();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/funcionario");
+		final RequestDispatcher rd = request.getRequestDispatcher("/funcionario");
 
 		rd.forward(request, response);
 	}

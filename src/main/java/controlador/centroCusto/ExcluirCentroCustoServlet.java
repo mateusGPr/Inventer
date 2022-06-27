@@ -28,16 +28,17 @@ public class ExcluirCentroCustoServlet extends HttpServlet {
 		try {
 			centrocustoId = Long.parseLong(request.getParameter("id").trim());
 
-			CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
+			final CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
 
 			centrocusto = repositorio.recuperarPorId(centrocustoId);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
-		if (centrocusto == null)
+		if (centrocusto == null) {
 			centrocusto = new CentroCusto();
+		}
 
 		request.setAttribute("centrocusto", centrocusto);
 
@@ -45,7 +46,7 @@ public class ExcluirCentroCustoServlet extends HttpServlet {
 
 		request.setAttribute("pathView", "/WEB-INF/views/centrocusto/excluir.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
@@ -57,22 +58,22 @@ public class ExcluirCentroCustoServlet extends HttpServlet {
 
 		try {
 			patrimonioId = Long.parseLong(request.getParameter("id").trim());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
 		if (patrimonioId > 0) {
-			CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
+			final CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
 
-			CentroCusto centrocusto = repositorio.recuperarPorId(patrimonioId);
+			final CentroCusto centrocusto = repositorio.recuperarPorId(patrimonioId);
 
 			repositorio.excluir(centrocusto);
 
 			PersistenceConfig.closeEntityManager();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/centrocusto");
+		final RequestDispatcher rd = request.getRequestDispatcher("/centrocusto");
 
 		rd.forward(request, response);
 	}

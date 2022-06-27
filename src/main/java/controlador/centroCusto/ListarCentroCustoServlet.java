@@ -21,34 +21,28 @@ public class ListarCentroCustoServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
-		CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		final CentroCustoRepositorio repositorio = new CentroCustoRepositorio();
 
-		Collection<CentroCusto> centrocustos =
-				repositorio.recuperar();
+		final Collection<CentroCusto> centrocustos = repositorio.recuperar();
 
 		PersistenceConfig.closeEntityManager();
 
 		request.setAttribute("centrocusto", centrocustos);
 
-		request.setAttribute("tituloPagina",
-				"Centro de Custos");
+		request.setAttribute("tituloPagina", "Centro de Custos");
 
-		request.setAttribute("pathView",
-				"/WEB-INF/views/centrocusto/listar.jsp");
+		request.setAttribute("pathView", "/WEB-INF/views/centrocusto/listar.jsp");
 
-		RequestDispatcher rd =
-				request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

@@ -73,10 +73,10 @@ public class CadastrarPatrimonioServlet extends HttpServlet {
 			}
 
 			final Patrimonio patrimonio = PersistPatrimonio(repositorio, request);
-			
+
 			setor.getPatrimonios().add(patrimonio);
 			funcionario.getPatrimonios().add(patrimonio);
-			
+
 			funcRepo.atualizar(funcionario);
 			setorRepo.atualizar(setor);
 		} catch (final Exception e) {

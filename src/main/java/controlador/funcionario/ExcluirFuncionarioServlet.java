@@ -28,16 +28,17 @@ public class ExcluirFuncionarioServlet extends HttpServlet {
 		try {
 			funcionarioId = Long.parseLong(request.getParameter("id").trim());
 
-			FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
+			final FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
 
 			funcionario = repositorio.recuperarPorId(funcionarioId);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
-		if (funcionario == null)
+		if (funcionario == null) {
 			funcionario = new Funcionario();
+		}
 
 		request.setAttribute("funcionario", funcionario);
 
@@ -45,7 +46,7 @@ public class ExcluirFuncionarioServlet extends HttpServlet {
 
 		request.setAttribute("pathView", "/WEB-INF/views/funcionario/excluir.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
+		final RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/template.jsp");
 
 		rd.forward(request, response);
 	}
@@ -57,22 +58,22 @@ public class ExcluirFuncionarioServlet extends HttpServlet {
 
 		try {
 			patrimonioId = Long.parseLong(request.getParameter("id").trim());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 
 		if (patrimonioId > 0) {
-			FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
+			final FuncionarioRepositorio repositorio = new FuncionarioRepositorio();
 
-			Funcionario funcionario = repositorio.recuperarPorId(patrimonioId);
+			final Funcionario funcionario = repositorio.recuperarPorId(patrimonioId);
 
 			repositorio.excluir(funcionario);
 
 			PersistenceConfig.closeEntityManager();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/funcionario");
+		final RequestDispatcher rd = request.getRequestDispatcher("/funcionario");
 
 		rd.forward(request, response);
 	}
